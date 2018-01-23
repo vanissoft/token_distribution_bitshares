@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta name="description" content="">
+	<meta name="keywords" content="">
+
+	<title>Token Distributor - Bitshares</title>
+
+	<!-- Styles -->
+	<link href="assets/css/core.min.css" rel="stylesheet">
+	<link href="assets/css/thesaas.min.css" rel="stylesheet">
+	<link href="assets/css/style.css" rel="stylesheet">
+
+	<!-- Favicons -->
+	<link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
+	<link rel="icon" href="assets/img/favicon.ico">
+
+	<!-- Slide Menu -->
+	<link rel="stylesheet" href="slide-menu/slidebars.css">
+	<link rel="stylesheet" href="slide-menu/style.css">
+
+
+	<!--  Open Graph Tags -->
+	<meta property="og:title" content="Token Distributor">
+	<meta property="og:description" content="Bitshares Token Distributor">
+	<meta property="og:image" content="http://thetheme.io/thesaas/assets/img/og-img.png">
+	<meta property="og:url" content="https://bitshares.org/">
+	<meta name="twitter:card" content="summary_large_image">
+	<script type="text/javascript" src="brython.js"></script>
+	<script type="text/javascript" src="brython_stdlib.js"></script>
+	<script type="text/python" src="wmain.py"></script>
+</head>
+
+<body onload="brython(1);">
+
+<div canvas="container">
+	<!-- Topbar -->
+	<nav class="topbar topbar-inverse topbar-expand-md topbar-sticky">
+		<div class="container">
+
+			<div class="topbar-left">
+				<a class="topbar-brand" href="http://bitshares.org">
+					<img class="logo-default" src="assets/img/logo.png" alt="Bitshares">
+					<img class="logo-inverse" src="assets/img/logow.png" alt="Bitshares">
+				</a>
+			</div>
+			<div class="topbar-brand">
+				<h5 class="logo-default titlebar1">Token Distributor</h5>
+				<h5 class="logo-inverse titlebar2">Token Distributor</h5>
+			</div>
+			<div class="topbar-right">
+				<a class="btn btn-sm btn-outline btn-primary hidden-sm-down" href="https://bitshares.org/wallet/">Online Exchange</a>
+			</div>
+
+		</div>
+	</nav>
+	<!-- END Topbar -->
+
+
+
+	<!-- Header -->
+	<header class="header header-inverse inner-headers">
+		<div class="container text-center">
+
+			<div class="row">
+				<div class="col-12 col-lg-8 offset-lg-2">
+
+					<h1>Token Distributor</h1>
+					<p class="fs-18 opacity-70">Automatic token distribution</p>
+
+				</div>
+			</div>
+
+		</div>
+	</header>
+	<!-- END Header -->
+
+	<!-- Main container -->
+	<main class="main-content">
+
+		<section class="section">
+			<div class="container">
+				<nav class="overlay-menu">
+
+					<div class="no-show-btn" style="width:100%; display:inline-block; padding:0px 0 0 0">
+						<div class="container2">
+							<div class="text-center">
+								<ul class="nav nav-outline nav-round">
+									<li class="nav-item w-130">
+										<a class="nav-link active" data-toggle="tab" href="#step-1">INTRO</a>
+									</li>
+									<li class="nav-item w-130">
+										<a class="nav-link" data-toggle="tab" href="#step-2">SNAPSHOT</a>
+									</li>
+									<li class="nav-item w-130">
+										<a class="nav-link" data-toggle="tab" href="#step-3">DISTRIBUTION</a>
+									</li>
+								</ul>
+							</div>
+							<div class="tab-content">
+								<div class="tab-pane show active" id="step-1" style="background:#004883; margin-top:0px; height:10px; padding-top:4px;">
+									<br />
+									<h4>Caution</h4>
+									<p><strong>This software is in Alpha version. The user can fall into overcost due to the experimental status of this software.</strong></p>
+									<p>This page is the user interface of the Token Distributor Software (The Front-End).</p>
+									<p>The Back-End is intended to be used solely by one user at once, as it lacks of multi account logic.</p>
+									<p>Due of the nature of the Block-Chain, all the operations are irreversible.</p>
+									<h4>Guideline to Token Distribution</h4>
+									<p>The whole process consists in two steps: snapshoting and distribution. Snapshot consists in a scan of the whole BlockChain
+										looking for balances of a particular token. Distribution is the action of send a specific token to the holders resulting of
+										the previus step (snapshot).</p>
+								</div>
+
+								<div class="tab-pane" id="step-2" style="background:#004883; margin-top:0px; height:10px; padding-top:4px;">
+
+									<div onsubmit="return false;" class="form-horizontal form-group-separated" style="margin-top:40px;">
+										<div class="col-md-3 col-xs-3">
+											<span>Distribute Asset</span>
+											<div class="input-group">
+												<span class="input-group-addon"><i class="fa fa-diamond"></i></span>
+												<input type="text" id="fasset" class="form-control" placeholder="Asset" title="New token to distribute" >
+												<span class="label" id="lidasset"></span>
+											</div>
+											<span>Amount</span>
+											<div class="input-group">
+												<span class="input-group-addon"><i class="fa fa-dollar"></i></span>
+												<input type="number" id="famount" class="form-control" step="1000" placeholder="Asset" title="Total number of tokens to distribute" >
+											</div>
+											<span>Ratio</span>
+											<div class="input-group">
+												<span class="input-group-addon"><i class="fa fa-balance-scale"></i></span>
+												<input type="number" id="fratio" class="form-control" step="0.01"
+													   placeholder="1:x" title="Number of new tokens for each holding token" >
+											</div>
+
+										</div>
+										<div class="col-md-3 col-xs-3">
+											<span>To Holders Of</span>
+											<div class="input-group">
+												<span class="input-group-addon"><i class="fa fa-bank"></i></span>
+												<input type="text" id="fassethold" class="form-control" placeholder="Asset" title="Token to look at for holdings" >
+												<span class="label" id="lidassethold"></span>
+											</div>
+											<span>Minimum holdings</span>
+											<div class="input-group">
+												<span class="input-group-addon"><i class="fa fa-dollar"></i></span>
+												<input type="number" id="fholdminimum" class="form-control" step="1000"
+													   placeholder="1:x" title="Minimum quantity of tokens to take part" >
+											</div>
+											<span>Minimum to give</span>
+											<div class="input-group">
+												<span class="input-group-addon"><i class="fa fa-dollar"></i></span>
+												<input type="number" id="fminimum" class="form-control" step="1"
+													   placeholder="Minimum" title="Minimum quantity to give" >
+											</div>
+										</div>
+										<div class="col-md-6 col-xs-6">
+											<span>Transfer fees</span>
+											<div class="input-group">
+												<span class="input-group-addon"><i class="fa fa-dollar"></i></span>
+												<input type="number" id="ftransferfee" class="form-control" step="0.0001"
+													   placeholder="fees" title="Fee for each transfer." >
+											</div>
+											<span>Snapshot</span>
+											<div class="input-group">
+												<strong class="input-group-addon">Status: <strong></strong><span class="label" id="lblsnapshot_status">?</span></strong></span>
+												<button class="btn btn-info" id="btnsnapshot"><i class="fa fa-photo"></i> SnapShot</button>
+											</div>
+											<div class="input-group">
+												<span class="input-group-addon">Holders: <span class="label" id="lblsnapshot_holders">0</span></span>
+												<span class="input-group-addon">Balance: <span class="label" id="lblsnapshot_balance">0</span></span>
+											</div>
+											<div class="input-group">
+												<span class="input-group-addon">Costs (aprox.): <span class="label" id="lblsnapshot_costs">99999</span> BTS</span>
+												<span class="input-group-addon" id="dcsv"></span>
+											</div>
+										</div>
+										<br />
+										<div class="col-md-12 col-xs-12 text-center">
+										<hr />
+											<div class="table" id="table-container"></div>
+
+											<div class="container2 text-center" id="message-container">
+												<h5>Status</h5>
+												<span id="message-area1"></span>
+											</div>
+										</div>
+									</div>
+								</div>
+
+								<div class="tab-pane" id="step-3" style="background:#004883; margin-top:0px; height:10px; padding-top:4px;">
+									<div onsubmit="return false;" class="form-horizontal form-group-separated" style="margin-top:40px;">
+										<div class="col-md-6 col-xs-6">
+											<h3>Caution</h3>
+											<p>Do NOT enter your wif key if this page is it not in your local computer!</p>
+											<p><strong>This step is irreversible!</strong></p>
+											<p>Double-check the snapshot results!</p>
+											<p><strong>This software is in Alpha version. The user can fall into overcosts due to the experimental status of this software.</strong></p>
+										</div>
+										<div class="col-md-6 col-xs-6">
+											<span>Account</span>
+											<div class="input-group">
+												<span class="input-group-addon"><i class="fa fa-cloud"></i></span>
+												<input type="password" id="fkey" class="form-control" placeholder="Wif Private Key">
+											</div>
+											<span>Distribute</span>
+											<div class="input-group">
+												<span class="input-group-addon"><i class="fa fa-envelope"></i></span>
+												<textarea id="fmessage" class="form-control" rows=2 placeholder="Message"></textarea>
+											</div>
+											<br />
+											<span class="input-group-btn"><button class="btn btn-info" id="btnlaunch"><i class="fa fa-paper-plane"></i>Launch!</button></span>
+										</div>
+										<br />
+										<div class="col-md-12 col-xs-12 text-center">
+											<hr/>
+											<div class="container2 text-center" id="message-container2">
+												<h5>Status</h5>
+												<span id="message-area2"></span>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</nav>
+
+
+			</div>
+
+
+
+		</section>
+
+
+
+
+
+
+
+	</main>
+	<!-- END Main container -->
+
+
+	<!-- Footer -->
+	<footer class="site-footer py-90">
+		<div class="container">
+			<div class="row gap-y">
+				<div class="col-6 col-md-4 col-lg-2">
+					<h6 class="heading-alt text-uppercase fs-14 mb-3">Learn</h6>
+					<div class="nav flex-column">
+						<a class="nav-link" href="http://docs.bitshares.eu/">Documentation</a>
+						<a class="nav-link" href="http://bitshares-explorer.io/">Block Explorer</a>
+						<a class="nav-link" href="http://docs.bitshares.eu/migration/">Migration Guide</a>
+						<a class="nav-link" href="infographic.html">Infographic</a>
+						<a class="nav-link" href="https://bitshares.org/doxygen/">Doxygen</a>
+					</div>
+				</div>
+				<div class="col-6 col-md-4 col-lg-2">
+					<h6 class="heading-alt text-uppercase fs-14 mb-3">Participate</h6>
+					<div class="nav flex-column">
+						<a class="nav-link" href="download.html">Download Wallet</a>
+						<a class="nav-link" href="register.html">Register</a>
+						<a class="nav-link" href="deposit.html">Deposit</a>
+						<a class="nav-link" href="referral-program.html">Referral Program</a>
+					</div>
+				</div>
+				<div class="col-6 col-md-4 col-lg-2">
+					<h6 class="heading-alt text-uppercase fs-14 mb-3">Social</h6>
+					<div class="nav flex-column">
+						<a class="nav-link" href="https://twitter.com/bitshares">Twitter</a>
+						<a class="nav-link" href="https://github.com/bitshares">GitHub</a>
+						<a class="nav-link" href="https://t.me/BitSharesDEX">Telegram</a>
+						<a class="nav-link" href="https://discord.gg/GsjQfAJ">Discord</a>
+						<a class="nav-link" href="https://www.bitsharestalk.org/">Forum</a>
+						<a class="nav-link" href="contact.html">Contact</a>
+					</div>
+				</div>
+				<div class="col-6 col-md-4 col-lg-2">
+					<h6 class="heading-alt text-uppercase fs-14 mb-3">Other</h6>
+					<div class="nav flex-column">
+						<a class="nav-link" href="http://www.billionHeroCampaign.com">The Billion Hero Campaign</a>
+						<a class="nav-link" href="https://soundcloud.com/beyond-bitcoin-hangouts">Beyond Bitcoin</a>
+						<a class="nav-link" href="https://steemit.com/trending/bitshares">Bitshares on Steem</a>
+						<a class="nav-link" href="https://steemit.com/@steempower">State of the Network</a>
+						<a class="nav-link" href="#">Press</a>
+					</div>
+				</div>
+
+				<div class="col-12 col-md-4 col-lg-3">
+					<h6 class="heading-alt text-uppercase fs-14 mb-3">Stay in touch</h6>
+
+
+					<div class="social text-center">
+						<a class="social-twitter" href="https://twitter.com/bitshares"><i class="fa fa-twitter"></i></a>
+						<a class="social-reddit" href="https://www.reddit.com/r/BitShares"><i class="fa fa-reddit"></i></a>
+						<a class="social-github" href="https://github.com/bitshares"><i class="fa fa-github"></i></a>
+						<a class="social-twitter" href="https://t.me/BitSharesDEX"><i class="fa fa-telegram"></i></a>
+					</div>
+					<hr>
+					<br />
+				</div>
+
+			</div>
+		</div>
+	</footer>
+	<!-- END Footer -->
+</div>
+
+
+<!-- Scripts -->
+<script src="assets/js/core.min.js"></script>
+<script src="assets/js/thesaas.js"></script>
+<script src="assets/js/script.js"></script>
+<!-- Go to Top Button -->
+<div id="stop" class="scrollTop bttt-border bttt-round bttt-positionRight bttt-slideFromBottom">
+	<i class='fa fa-chevron-up'></i>
+</div>
+<!-- End Go to Top Button -->
+</body>
+</html>
